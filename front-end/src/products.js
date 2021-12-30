@@ -22,7 +22,7 @@ const products = [
     category: 'Electronics',
     price: 70000,
     countInStock: 7,
-    rating: 4.0,
+    rating: 4,
     numReviews: 8
   },
   {
@@ -35,7 +35,7 @@ const products = [
     category: 'Electronics',
     price: 55000,
     countInStock: 5,
-    rating: 3,
+    rating: 3.5,
     numReviews: 12
   },
   {
@@ -48,7 +48,7 @@ const products = [
     category: 'Electronics',
     price: 45000,
     countInStock: 11,
-    rating: 5,
+    rating: 3,
     numReviews: 12
   },
   {
@@ -61,7 +61,7 @@ const products = [
     category: 'Electronics',
     price: 1800,
     countInStock: 7,
-    rating: 3.5,
+    rating: 1.5,
     numReviews: 10
   },
   {
@@ -74,7 +74,7 @@ const products = [
     category: 'Electronics',
     price: 5000,
     countInStock: 0,
-    rating: 4,
+    rating: 0,
     numReviews: 12
   }
 ];
