@@ -1,4 +1,4 @@
-# Fmazon - The Online Shopping App Very Original
+# Fmazon - The Online Shopping App (Very Original)
 
 ## Using Lux Theme from Bootswatch
 
