@@ -1,0 +1,22 @@
+{
+  "name": "e-commerce-app",
+  "version": "1.0.0",
+  "description": "MERN SHOPPING APP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node back-end/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adarsh-chakraborty/E-Commerce-MERN.git"
+  },
+  "author": "Adarsh Chakraborty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adarsh-chakraborty/E-Commerce-MERN/issues"
+  },
+  "homepage": "https://github.com/adarsh-chakraborty/E-Commerce-MERN#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
