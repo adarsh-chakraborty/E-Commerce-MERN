@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/adarsh-chakraborty/E-Commerce-MERN#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "colors": "^1.4.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.4"
   },
   "devDependencies": {
     "dotenv": "^10.0.0"
