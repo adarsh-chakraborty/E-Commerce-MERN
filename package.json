@@ -4,7 +4,9 @@
   "description": "MERN SHOPPING APP",
   "main": "server.js",
   "scripts": {
-    "start": "node back-end/server"
+    "server": "nodemon back-end/server",
+    "client": "npm start --prefix front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
