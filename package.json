@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "MERN SHOPPING APP",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "server": "nodemon back-end/server",
     "client": "npm start --prefix front-end",
@@ -20,5 +21,8 @@
   "homepage": "https://github.com/adarsh-chakraborty/E-Commerce-MERN#readme",
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
   }
 }

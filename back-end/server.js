@@ -1,8 +1,11 @@
-const express = require('express');
-
-const products = require('./data/products');
+import dotenv from 'dotenv';
+if (!process.env.HEROKU) dotenv.config();
+import express from 'express';
+import products from './data/products.js';
 
 const app = express();
+
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res, next) => {
   res.send('API is running');
@@ -21,4 +24,7 @@ app.get('/api/products/:id', (req, res, next) => {
     .json({ message: 'Product not found with the ID', status: 404 });
 });
 
-app.listen(5000, console.log('Server is running on port: 5000'));
+app.listen(
+  5000,
+  console.log(`Server running in ${process.env.NODE_ENV} mode on ${PORT}`)
+);
