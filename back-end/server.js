@@ -4,7 +4,7 @@ import express from 'express';
 import colors from 'colors';
 
 import connectDB from './config/db.js';
-import products from './data/products.js';
+import productRoutes from './routes/productRoutes.js';
 
 connectDB();
 const app = express();
@@ -15,19 +15,7 @@ app.get('/', (req, res, next) => {
   res.send('API is running');
 });
 
-app.get('/api/products', (req, res, next) => {
-  res.json(products);
-});
-
-app.get('/api/products/:id', (req, res, next) => {
-  const product = products.find((p) => p._id === req.params.id);
-  if (product) return res.json(product);
-
-  res.status(404).json({
-    message: `No product exist with Id: ${req.params.id}`,
-    status: 404
-  });
-});
+app.use('/api/products', productRoutes);
 
 app.listen(
   PORT,
