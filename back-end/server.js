@@ -6,6 +6,8 @@ import colors from 'colors';
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
 
+import { errorMiddleware, notFound } from './middlewares/errorMiddleware.js';
+
 connectDB();
 const app = express();
 
@@ -17,6 +19,8 @@ app.get('/', (req, res, next) => {
 
 app.use('/api/products', productRoutes);
 
+app.use('*', notFound);
+app.use(errorMiddleware);
 app.listen(
   PORT,
   console.log(
