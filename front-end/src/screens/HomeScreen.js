@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Alert } from 'react-bootstrap';
 import Product from '../components/Product';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
@@ -19,6 +19,7 @@ const HomeScreen = () => {
   return (
     <>
       <h1>Latest Products</h1>
+      <Alert variant="secondary">You are logged in Successfully!</Alert>
       {loading && <Loader>Loading...</Loader>}
       {error && <Message variant="danger">{error}</Message>}
       {!error && !loading && (
