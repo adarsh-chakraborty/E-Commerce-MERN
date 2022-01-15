@@ -7,6 +7,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true
     },
+    password: {
+      type: String,
+      required: true
+    },
     email: {
       type: String,
       required: true,
@@ -24,6 +28,9 @@ const userSchema = mongoose.Schema(
 );
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
+  console.log('Matching passwords');
+  console.log(enteredPassword);
+  console.log(this.password);
   return await bcrypt.compare(enteredPassword, this.password);
 };
 

@@ -1,8 +1,6 @@
 import AppError from '../utils/AppError.js';
 
 const errorMiddleware = (err, req, res, next) => {
-  console.log(err);
-
   if (err instanceof AppError) {
     return res
       .status(err.statusCode)

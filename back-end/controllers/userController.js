@@ -6,6 +6,7 @@ import AppError from '../utils/AppError.js';
 // @access Public
 const authUser = async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(email, password);
 
   const user = await User.findOne({ email });
 
