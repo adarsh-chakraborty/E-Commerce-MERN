@@ -5,11 +5,13 @@ import colors from 'colors';
 
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 import { errorMiddleware, notFound } from './middlewares/errorMiddleware.js';
 
 connectDB();
 const app = express();
+app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
@@ -18,6 +20,7 @@ app.get('/', (req, res, next) => {
 });
 
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 app.use('*', notFound);
 app.use(errorMiddleware);
