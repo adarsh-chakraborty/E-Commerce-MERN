@@ -7,10 +7,13 @@ const errorMiddleware = (err, req, res, next) => {
       .json({ message: err.message, type: err.name, status: err.statusCode });
   }
 
+  console.log(err);
+
   res.status(500).json({
     message: 'Internal server error',
     type: 'InternalError',
-    status: 500
+    status: 500,
+    stack: process.env.NODE_ENV === 'development' ? err.message : null
   });
 };
 
