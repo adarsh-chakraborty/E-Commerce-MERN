@@ -42,6 +42,34 @@ const getUserProfile = async (req, res, next) => {
   });
 };
 
+// @desc Update user Profile
+// @route PUT /api/users/profile
+// @access Private
+const putUserProfile = async (req, res, next) => {
+  const user = await User.findById(req.user._id);
+
+  if (!user) {
+    throw new AppError("User doesn't exist.", 'NotFound', 404);
+  }
+
+  user.name = req.body.name || user.name;
+  user.email = req.body.email || user.email;
+
+  if (req.body.password) {
+    user.password = req.body.password;
+  }
+
+  const updatedUser = await user.save();
+
+  res.json({
+    _id: updatedUser._id,
+    name: updatedUser.name,
+    email: updatedUser.email,
+    isAdmin: updatedUser.isAdmin,
+    token: generateToken(updatedUser._id)
+  });
+};
+
 // @desc Register a new user
 // @route POST /api/users/register
 // @access public
@@ -77,4 +105,4 @@ const registerUser = async (req, res, next) => {
   throw new AppError('Invalid user data.', 'BadRequest', 400);
 };
 
-export { authUser, getUserProfile, registerUser };
+export { authUser, getUserProfile, registerUser, putUserProfile };

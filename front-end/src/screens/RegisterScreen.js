@@ -26,10 +26,10 @@ const RegisterScreen = () => {
   const { loading, error, userInfo } = userRegister;
 
   const queryParams = new URLSearchParams(location.search);
-  const redirect = queryParams.get('redirect') ?? 'register';
+  const redirect = queryParams.get('redirect') ?? '/';
 
   useEffect(() => {
-    if (userInfo && redirect) {
+    if (userInfo) {
       navigate(redirect);
     }
   }, [userInfo, redirect, navigate]);
