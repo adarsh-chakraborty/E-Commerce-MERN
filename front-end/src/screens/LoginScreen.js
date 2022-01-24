@@ -7,7 +7,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { login } from '../actions/userLoginActions';
+import { login } from '../actions/userActions';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
