@@ -45,7 +45,7 @@ const getUserProfile = async (req, res, next) => {
 // @desc Update user Profile
 // @route PUT /api/users/profile
 // @access Private
-const putUserProfile = async (req, res, next) => {
+const updateUserProfile = async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
   if (!user) {
@@ -105,4 +105,4 @@ const registerUser = async (req, res, next) => {
   throw new AppError('Invalid user data.', 'BadRequest', 400);
 };
 
-export { authUser, getUserProfile, registerUser, putUserProfile };
+export { authUser, getUserProfile, registerUser, updateUserProfile };

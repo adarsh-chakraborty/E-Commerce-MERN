@@ -3,7 +3,7 @@ import express from 'express';
 import {
   authUser,
   getUserProfile,
-  putUserProfile,
+  updateUserProfile,
   registerUser
 } from '../controllers/userController.js';
 import { protect } from '../middlewares/authMiddleware.js';
@@ -15,6 +15,6 @@ Router.route('/').post(catchAsync(registerUser));
 Router.post('/login', catchAsync(authUser));
 Router.route('/profile')
   .get(catchAsync(protect), catchAsync(getUserProfile))
-  .put(catchAsync(protect), catchAsync(putUserProfile));
+  .put(catchAsync(protect), catchAsync(updateUserProfile));
 
 export default Router;
