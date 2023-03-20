@@ -105,4 +105,56 @@ const registerUser = async (req, res, next) => {
   throw new AppError('Invalid user data.', 'BadRequest', 400);
 };
 
-export { authUser, getUserProfile, registerUser, updateUserProfile };
+const getAllUsers = async (req, res, next) => {
+  const user = await User.find({});
+  res.json(user);
+};
+
+const deleteUser = async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (user) {
+    await user.remove();
+    return res.json({ message: 'User removed' });
+  }
+  throw new AppError('User not found', 'NotFound', 404);
+};
+
+const getUserById = async (req, res, next) => {
+  const user = await User.findById(req.params.id).select('-password');
+  if (user) {
+    return res.json(user);
+  }
+  throw new AppError('User not found', 'NotFound', 404);
+};
+
+const updateUser = async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    throw new AppError("User doesn't exist.", 'NotFound', 404);
+  }
+
+  user.name = req.body.name || user.name;
+  user.email = req.body.email || user.email;
+  user.isAdmin = req.body.isAdmin;
+
+  const updatedUser = await user.save();
+
+  res.json({
+    _id: updatedUser._id,
+    name: updatedUser.name,
+    email: updatedUser.email,
+    isAdmin: updatedUser.isAdmin
+  });
+};
+
+export {
+  authUser,
+  getUserProfile,
+  registerUser,
+  updateUserProfile,
+  getAllUsers,
+  deleteUser,
+  getUserById,
+  updateUser
+};

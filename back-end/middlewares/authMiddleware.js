@@ -2,6 +2,14 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import AppError from '../utils/AppError.js';
 
+const admin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    throw new AppError('Not Authorized, Admin Only', 'AuthorizationError', 401);
+  }
+};
+
 const protect = async (req, res, next) => {
   let token;
 
@@ -37,4 +45,4 @@ const protect = async (req, res, next) => {
   }
 };
 
-export { protect };
+export { protect, admin };
