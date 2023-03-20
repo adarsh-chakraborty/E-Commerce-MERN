@@ -45,6 +45,7 @@ function CartScreen() {
 
   const checkoutHandler = () => {
     console.log('checking out');
+    navigate('/shipping');
   };
 
   return (

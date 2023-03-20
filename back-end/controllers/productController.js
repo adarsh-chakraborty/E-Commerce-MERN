@@ -13,6 +13,7 @@ const getAllProducts = async (req, res, next) => {
 // @route GET /api/:id
 // @access Public
 const getProductById = async (req, res, next) => {
+  // Check if the ID is valid Mongoose ID
   const product = await Product.findById(req.params.id);
   if (product) return res.json(product);
 

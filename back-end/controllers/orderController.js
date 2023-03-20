@@ -62,4 +62,10 @@ const updateOrderToPaid = async (req, res, next) => {
   throw new AppError('Order not found', 'NotFound', 404);
 };
 
-export { addOrderItems, getOrderById, updateOrderToPaid };
+const getUserOrders = async (req, res, next) => {
+  const orders = await Order.find({ user: req.user._id });
+
+  res.json(orders);
+};
+
+export { addOrderItems, getOrderById, updateOrderToPaid, getUserOrders };

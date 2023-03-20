@@ -14,7 +14,11 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET1);
       console.log(decoded);
-      req.user = await User.findById(decoded.id).select('-password');
+      const currentUser = await User.findById(decoded.id).select('-password');
+      if (!currentUser) {
+        next(new AppError('User not found', 'UserNotFound', 404));
+      }
+      req.user = currentUser;
       next();
     } catch (e) {
       throw new AppError(

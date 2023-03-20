@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import { Link } from 'react-router-dom';
@@ -39,7 +39,7 @@ const OrderScreen = () => {
       script.type = 'text/javascript';
       script.async = true;
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      scrupt.onload = () => {
+      script.onload = () => {
         setSdkReady(true);
       };
       document.body.appendChild(script);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
@@ -17,10 +17,9 @@ const PlaceOrderScreen = () => {
   useEffect(() => {
     if (success) {
       console.log('success');
-      console.log(order);
       navigate(`/order/${order._id}`);
     }
-  }, [success]);
+  }, [success, navigate]);
 
   const placeOrderHandler = () => {
     console.log('placing order...');
