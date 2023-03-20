@@ -31,4 +31,35 @@ const addOrderItems = async (req, res, next) => {
   res.status(201).json(createdOrder);
 };
 
-export { addOrderItems };
+const getOrderById = async (req, res, next) => {
+  const order = await Order.findById(req.params.id).populate(
+    'user',
+    'name email'
+  );
+  if (order) {
+    return res.json(order);
+  }
+
+  throw new AppError('Order not found', 'NotFound', 404);
+};
+
+const updateOrderToPaid = async (req, res, next) => {
+  const order = await Order.findById(req.params.id);
+  if (order) {
+    order.isPaid = true;
+    order.paidAt = Date.now();
+    order.paymentResult = {
+      id: req.body.id,
+      status: req.body.status,
+      update_time: req.body.update_time,
+      email_address: req.body.payer.email_address
+    };
+
+    const updatedOrder = await order.save();
+    return res.json(updatedOrder);
+  }
+
+  throw new AppError('Order not found', 'NotFound', 404);
+};
+
+export { addOrderItems, getOrderById, updateOrderToPaid };
