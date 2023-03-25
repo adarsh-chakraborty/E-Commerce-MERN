@@ -1,6 +1,8 @@
 import Order from '../models/Order.js';
 import AppError from '../utils/AppError.js';
 
+// To do wrap all controller functions in catchAsync
+
 const addOrderItems = async (req, res, next) => {
   const {
     orderItems,
@@ -68,4 +70,28 @@ const getUserOrders = async (req, res, next) => {
   res.json(orders);
 };
 
-export { addOrderItems, getOrderById, updateOrderToPaid, getUserOrders };
+const getOrders = async (req, res, next) => {
+  const orders = await Order.find().populate('user', 'id name');
+  res.json(orders);
+};
+
+const updateOrderToDelivered = async (req, res, next) => {
+  const order = await Order.findById(req.params.id);
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+    const updatedOrder = await order.save();
+    return res.json(updatedOrder);
+  }
+
+  throw new AppError('Order not found', 'NotFound', 404);
+};
+
+export {
+  addOrderItems,
+  getOrderById,
+  updateOrderToPaid,
+  updateOrderToDelivered,
+  getUserOrders,
+  getOrders
+};

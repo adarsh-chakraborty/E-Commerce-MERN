@@ -16,17 +16,25 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
-  orderListReducer
+  orderListReducer,
+  ordersAllReducer,
+  orderDeliverReducer
 } from '../reducers/orderReducers';
 
 import {
   productListReducer,
-  productDetailReducer
+  productDetailReducer,
+  productDeleteReducer,
+  productCreateReducer,
+  productUpdateReducer
 } from '../reducers/productReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetail: productDetailReducer,
+  productDelete: productDeleteReducer,
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -34,11 +42,13 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   userList: usersListReducer,
   userDelete: userDeleteReducer,
-  userUpdate: userDeleteReducer,
+  userUpdate: userUpdateReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
-  orderList: orderListReducer
+  orderDeliver: orderDeliverReducer,
+  orderList: orderListReducer,
+  ordersAll: ordersAllReducer
 });
 
 const cartItemsFromStorage =

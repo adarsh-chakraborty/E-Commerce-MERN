@@ -10,7 +10,13 @@ import {
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAILURE,
-  ORDER_PAY_REQUEST
+  ORDER_PAY_REQUEST,
+  ORDER_ALL_REQUEST,
+  ORDER_ALL_SUCCESS,
+  ORDER_ALL_FAILURE,
+  ORDER_DELIVER_REQUEST,
+  ORDER_DELIVER_SUCCESS,
+  ORDER_DELIVER_FAILURE
 } from '../constants/orderConstants';
 import axios from 'axios';
 
@@ -105,6 +111,38 @@ export const payOrder =
     }
   };
 
+export const deliverOrder = (order) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_DELIVER_REQUEST });
+
+    const {
+      userLogin: { userInfo }
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
+
+    const { data } = await axios.put(
+      `/api/orders/${order._id}/deliver`,
+      {},
+      config
+    );
+
+    dispatch({ type: ORDER_DELIVER_SUCCESS, payload: data });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: ORDER_DELIVER_FAILURE,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+    });
+  }
+};
+
 export const listUserOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST });
@@ -125,6 +163,33 @@ export const listUserOrders = () => async (dispatch, getState) => {
     console.log(err);
     dispatch({
       type: ORDER_LIST_FAILURE,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+    });
+  }
+};
+
+export const listAllOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_ALL_REQUEST });
+
+    const {
+      userLogin: { userInfo }
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
+
+    const { data } = await axios.get(`/api/orders`, config);
+    dispatch({ type: ORDER_ALL_SUCCESS, payload: data });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: ORDER_ALL_FAILURE,
       payload:
         err.response && err.response.data.message
           ? err.response.data.message
