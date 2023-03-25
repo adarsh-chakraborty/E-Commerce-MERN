@@ -8,7 +8,7 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import colors from 'colors';
-
+import morgan from 'morgan';
 import { errorMiddleware, notFound } from './middlewares/errorMiddleware.js';
 
 connectDB();
@@ -16,6 +16,10 @@ const app = express();
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.get('/', (req, res, next) => {
   res.send('API is running');
