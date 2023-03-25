@@ -47,6 +47,7 @@ const OrderScreen = () => {
   }
 
   useEffect(() => {
+    console.log(id);
     if (!userInfo) {
       navigate('/login');
       return;
@@ -65,7 +66,7 @@ const OrderScreen = () => {
 
     addPaypalScript();
 
-    if (!order || successPay || successDeliver) {
+    if (!order || successPay || successDeliver || order._id !== id) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(id));
@@ -76,7 +77,7 @@ const OrderScreen = () => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, id, successPay, order, successDeliver]);
+  }, [dispatch, id, successPay, order, successDeliver, navigate, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);

@@ -22,7 +22,7 @@ Router.route('/:id/pay').put(protect, catchAsync(updateOrderToPaid));
 Router.route('/:id/deliver').put(
   catchAsync(protect),
   catchAsync(admin),
-  catchAsync(updateOrderToPaid)
+  catchAsync(updateOrderToDelivered)
 );
 
 export default Router;

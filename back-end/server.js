@@ -7,6 +7,7 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import colors from 'colors';
 
 import { errorMiddleware, notFound } from './middlewares/errorMiddleware.js';
 

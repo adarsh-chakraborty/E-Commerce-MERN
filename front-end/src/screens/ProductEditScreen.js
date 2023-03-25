@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { listProductDetail, updateProduct } from '../actions/productActions';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditScreen = () => {
-  const { productId } = useParams();
+  const { id: productId } = useParams();
+  console.log(productId);
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState('');
@@ -23,10 +25,9 @@ const ProductEditScreen = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const productDetail = useSelector((state) => state.productDetail);
+  const { loading, error, product } = productDetail;
 
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
@@ -42,6 +43,7 @@ const ProductEditScreen = () => {
       return;
     }
     if (!product.name || product._id !== productId) {
+      console.log('Dispatching list product detail');
       dispatch(listProductDetail(productId));
       return;
     }
