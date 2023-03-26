@@ -3,10 +3,7 @@ main {
 }
 
 h3 {
-  padding: 0.25rem 0;
-}
-.rating span {
-  margin: 0.1rem;
+  padding: 1rem 0;
 }
 
 h1 {
@@ -16,5 +13,52 @@ h1 {
 
 h2 {
   font-size: 1.4rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+/* carousel */
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel-caption {
+  position: absolute;
+  top: 0;
+}
+
+.carousel-caption h2 {
+  color: #fff;
+  font-size: 3vw;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 0 10px #000;
+  margin: 0 auto;
+  padding: 0 1rem;
+  z-index: 4;
+}
+
+.carousel img {
+  height: 300px;
+  padding: 30px;
+  margin: 40px;
+  z-index: 3;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel a {
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .carousel-caption h2 {
+    font-size: 2.5vw;
+  }
 }

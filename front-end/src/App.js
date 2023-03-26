@@ -26,6 +26,11 @@ const App = () => {
         <Container>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
+            <Route path="/page/:pageNumber" element={<HomeScreen />} />
+            <Route
+              path="/search/:keyword/page/:pageNumber"
+              element={<HomeScreen />}
+            />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
@@ -36,6 +41,10 @@ const App = () => {
             <Route path="/order/:id" element={<OrderScreen />} />
             <Route path="/admin/userlist" element={<UsersListScreen />} />
             <Route path="/admin/productlist" element={<ProductListScreen />} />
+            <Route
+              path="/admin/productlist/:pageNumber"
+              element={<ProductListScreen />}
+            />
             <Route path="/admin/orderslist" element={<OrdersListScreen />} />
             <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
             <Route
@@ -45,6 +54,8 @@ const App = () => {
             <Route path="/cart" element={<CartScreen />}>
               <Route path=":id" element={<CartScreen />} />
             </Route>
+            <Route path="/search/:keyword" element={<HomeScreen />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </Container>
       </main>

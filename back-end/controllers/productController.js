@@ -5,8 +5,26 @@ import AppError from '../utils/AppError.js';
 // @route GET /api/products
 // @access Public
 const getAllProducts = async (req, res, next) => {
-  const products = await Product.find({});
-  res.json(products);
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i'
+        }
+      }
+    : {};
+
+  const pageSize = 2;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const count = await Product.countDocuments({ ...keyword });
+
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  const pages = Math.ceil(count / pageSize);
+  res.json({ products, page, pages });
 };
 
 // @desc Fetch a Single Product
@@ -129,11 +147,17 @@ const createProductReview = async (req, res, next) => {
     .json({ message: 'Your Review has been added successfully. Thank you!' });
 };
 
+const getTopProducts = async (req, res, next) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
+  res.json(products);
+};
+
 export {
   getAllProducts,
   getProductById,
   deleteProduct,
   createProduct,
   updateProduct,
-  createProductReview
+  createProductReview,
+  getTopProducts
 };

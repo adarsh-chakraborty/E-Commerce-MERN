@@ -10,7 +10,8 @@ import {
   deleteProduct,
   createProduct,
   updateProduct,
-  createProductReview
+  createProductReview,
+  getTopProducts
 } from '../controllers/productController.js';
 
 const Router = express.Router();
@@ -18,6 +19,9 @@ const Router = express.Router();
 Router.route('/')
   .get(catchAsync(getAllProducts))
   .post(catchAsync(protect), catchAsync(admin), catchAsync(createProduct));
+
+Router.get('/top', catchAsync(getTopProducts));
+
 Router.route('/:id')
   .get(catchAsync(getProductById))
   .delete(catchAsync(protect), catchAsync(admin), catchAsync(deleteProduct))
