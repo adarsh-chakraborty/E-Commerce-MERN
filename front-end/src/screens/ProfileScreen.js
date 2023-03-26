@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col, Table } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { listUserOrders } from '../actions/orderActions';
+import Meta from '../components/Meta';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -63,6 +62,7 @@ const ProfileScreen = () => {
   console.log(error);
   return (
     <Row>
+      <Meta title="Profile" />
       <Col md={3}>
         <h2>Profile</h2>
 

@@ -1,4 +1,4 @@
-# Fmazon - The Online Shopping App (Very Original)
+# TechShop - The Online Shopping App (Very Original)
 
 ## Using Lux Theme from Bootswatch
 
@@ -38,7 +38,7 @@ Also, make sure to remove all the `href` props.
 
 ```javascript
  <LinkContainer to="/">
-    <Navbar.Brand>Fmazon</Navbar.Brand>
+    <Navbar.Brand>TechShop</Navbar.Brand>
 </LinkContainer>
 
 <Navbar.Collapse id="basic-navbar-nav">

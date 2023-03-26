@@ -74,7 +74,7 @@ const LoginScreen = () => {
       </Form>
       <Row className="py-3">
         <Col>
-          First time shopping at Fmazon?
+          First time shopping at TechShop?
           <Link
             className="px-2"
             to={redirect ? `/register?redirect=${redirect}` : '/register'}

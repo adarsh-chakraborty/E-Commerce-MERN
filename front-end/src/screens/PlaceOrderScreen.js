@@ -19,7 +19,7 @@ const PlaceOrderScreen = () => {
       console.log('success');
       navigate(`/order/${order._id}`);
     }
-  }, [success, navigate]);
+  }, [success, navigate, order._id]);
 
   const placeOrderHandler = () => {
     console.log('placing order...');
