@@ -7,7 +7,7 @@ const errorMiddleware = (err, req, res, next) => {
       .json({ message: err.message, type: err.name, status: err.statusCode });
   }
 
-  console.log(err);
+  console.log('ERROR LOG:', err);
 
   res.status(500).json({
     message: 'Internal server error',

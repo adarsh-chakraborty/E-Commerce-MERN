@@ -22,17 +22,21 @@ const RegisterScreen = () => {
   const location = useLocation();
 
   const userRegister = useSelector((state) => state.userRegister);
-
   const { loading, error, userInfo } = userRegister;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo: user } = userLogin;
+
   const queryParams = new URLSearchParams(location.search);
-  const redirect = queryParams.get('redirect') ?? '/';
+  const redirect = queryParams.get('redirect')
+    ? `/${queryParams.get('redirect')}`
+    : '/';
 
   useEffect(() => {
-    if (userInfo) {
+    if (user || userInfo) {
       navigate(redirect);
     }
-  }, [userInfo, redirect, navigate]);
+  }, [userInfo, user, redirect, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();

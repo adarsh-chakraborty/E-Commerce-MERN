@@ -23,7 +23,9 @@ const LoginScreen = () => {
   const { loading, error, userInfo } = userLogin;
 
   const queryParams = new URLSearchParams(location.search);
-  const redirect = queryParams.get('redirect') ?? '/';
+  const redirect = queryParams.get('redirect')
+    ? `/${queryParams.get('redirect')}`
+    : '/';
 
   useEffect(() => {
     if (userInfo) {

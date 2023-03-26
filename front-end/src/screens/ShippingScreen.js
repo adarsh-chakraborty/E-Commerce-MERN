@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
@@ -17,6 +17,16 @@ const ShippingScreen = ({ histroy }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Check if the user is logged in
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/login');
+    }
+  }, [userInfo, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();

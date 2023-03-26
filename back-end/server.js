@@ -21,10 +21,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.get('/', (req, res, next) => {
-  res.send('API is running');
-});
-
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
@@ -33,8 +29,19 @@ app.get('/api/config/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
 
+if (process.env.NODE_ENV === 'production') {
+  // SPA : Single Page Application Setuo
+  app.use(express.static(path.join(path.resolve(), '/front-end/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.resolve(path.resolve(), 'front-end', 'build', 'index.html')
+    );
+  });
+}
+
 app.use('/uploads', express.static(path.join(path.resolve(), '/uploads')));
-app.use('*', notFound);
+// Not found and Error Middleware
+app.use(notFound);
 app.use(errorMiddleware);
 app.listen(
   PORT,
