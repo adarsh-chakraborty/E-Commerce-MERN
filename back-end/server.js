@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-if (!process.env.HEROKU) dotenv.config();
+dotenv.config();
 import express from 'express';
 import path from 'path';
 import connectDB from './config/db.js';
@@ -10,7 +10,7 @@ import uploadRoutes from './routes/uploadRoutes.js';
 import colors from 'colors';
 import morgan from 'morgan';
 import { errorMiddleware, notFound } from './middlewares/errorMiddleware.js';
-
+console.log(process.env.MONGODB_URI)
 connectDB();
 const app = express();
 app.use(express.json());
@@ -30,7 +30,7 @@ app.get('/api/config/paypal', (req, res) => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-  // SPA : Single Page Application Setuo
+  // SPA : Single Page Application Setup
   app.use(express.static(path.join(path.resolve(), '/front-end/build')));
   app.get('*', (req, res) => {
     res.sendFile(

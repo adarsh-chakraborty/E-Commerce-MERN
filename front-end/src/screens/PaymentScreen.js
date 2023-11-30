@@ -1,28 +1,28 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Form, Button, Col } from 'react-bootstrap';
-import FormContainer from '../components/FormContainer';
-import CheckoutSteps from '../components/CheckoutSteps';
-import { savePaymentMethod } from '../actions/cartActions';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Button, Col } from "react-bootstrap";
+import FormContainer from "../components/FormContainer";
+import CheckoutSteps from "../components/CheckoutSteps";
+import { savePaymentMethod } from "../actions/cartActions";
+import { useNavigate } from "react-router-dom";
 
 const PaymentScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   if (!shippingAddress) {
-    navigate('/shipping');
+    navigate("/shipping");
   }
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
-    navigate('/placeorder');
+    navigate("/placeorder");
   };
 
   return (
@@ -36,10 +36,10 @@ const PaymentScreen = () => {
           <Col>
             <Form.Check
               type="radio"
-              label="Paypal or Credit Card"
-              id="PayPal"
+              label="COD"
+              id="COD"
               name="paymentMethod"
-              value="PayPal"
+              value="COD"
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>

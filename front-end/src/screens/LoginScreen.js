@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import Message from '../components/Message';
-import FormContainer from '../components/FormContainer';
-import Loader from '../components/Loader';
+import React, { useState, useEffect } from "react";
+import Message from "../components/Message";
+import FormContainer from "../components/FormContainer";
+import Loader from "../components/Loader";
 
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
-import { login } from '../actions/userActions';
+import { login } from "../actions/userActions";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
@@ -23,9 +23,10 @@ const LoginScreen = () => {
   const { loading, error, userInfo } = userLogin;
 
   const queryParams = new URLSearchParams(location.search);
-  const redirect = queryParams.get('redirect')
-    ? `/${queryParams.get('redirect')}`
-    : '/';
+  const redirect =
+    queryParams.get("redirect") && queryParams.get("redirect") !== "/"
+      ? `/${queryParams.get("redirect")}`
+      : "/";
 
   useEffect(() => {
     if (userInfo) {
@@ -77,10 +78,7 @@ const LoginScreen = () => {
       <Row className="py-3">
         <Col>
           First time shopping at TechShop?
-          <Link
-            className="px-2"
-            to={redirect ? `/register?redirect=${redirect}` : '/register'}
-          >
+          <Link className="px-2" to="/register">
             Register an account
           </Link>
         </Col>
